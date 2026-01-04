@@ -33,15 +33,18 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build -- --configuration production --base-href=/angular_smart_todo/ --output-path=dist/smart-todo/browser
+        run: npm run build -- --configuration production --base-href=/angular_smart_todo/
 
       - name: Create .nojekyll file
-        run: touch dist/smart-todo/browser/.nojekyll
+        run: touch dist/smart-todo/.nojekyll
+
+      - name: Copy index.html to 404.html
+        run: cp dist/smart-todo/index.html dist/smart-todo/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/smart-todo/browser
+          path: ./dist/smart-todo
 
   deploy:
     environment:
