@@ -1,0 +1,122 @@
+<div class="state-debugger" [class.open]="isOpen">
+  <button
+    mat-fab
+    color="accent"
+    class="debugger-toggle"
+    (click)="toggleDebugger()"
+    [matBadge]="((state$ | async)?.todos?.length || 0)"
+    matBadgeColor="warn"
+    title="Toggle State Debugger">
+    <mat-icon>{{ isOpen ? 'close' : 'bug_report' }}</mat-icon>
+  </button>
+
+  <div class="debugger-panel" *ngIf="isOpen">
+    <div class="panel-header">
+      <h3>
+        <mat-icon>visibility</mat-icon>
+        State Debugger
+      </h3>
+      <button mat-icon-button (click)="copyToClipboard()" title="Copy state to clipboard">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>dashboard</mat-icon>
+            State Overview
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="state-info" *ngIf="state$ | async as state">
+          <div class="info-item">
+            <strong>Total Todos:</strong>
+            <span class="badge">{{ state.todos.length }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Completed:</strong>
+            <span class="badge success">{{ getCompletedCount(state.todos) }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Active:</strong>
+            <span class="badge warning">{{ getActiveCount(state.todos) }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Can Undo:</strong>
+            <span [class.enabled]="canUndo$ | async">{{ (canUndo$ | async) ? '✓' : '✗' }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Can Redo:</strong>
+            <span [class.enabled]="canRedo$ | async">{{ (canRedo$ | async) ? '✓' : '✗' }}</span>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>list</mat-icon>
+            Todos ({{ (state$ | async)?.todos?.length || 0 }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="todos-list" *ngIf="state$ | async as state">
+          <div class="todo-debug-item" *ngFor="let todo of state.todos; let i = index">
+            <div class="todo-debug-header">
+              <span class="todo-index">#{{ i + 1 }}</span>
+              <span class="todo-title">{{ todo.title }}</span>
+              <span class="todo-status" [class.completed]="todo.completed">
+                {{ todo.completed ? '✓' : '○' }}
+              </span>
+            </div>
+            <div class="todo-debug-details">
+              <div><strong>ID:</strong> {{ todo.id }}</div>
+              <div><strong>Priority:</strong> <span class="priority-{{ todo.priority }}">{{ todo.priority }}</span></div>
+              <div *ngIf="todo.tags.length"><strong>Tags:</strong> {{ todo.tags.join(', ') }}</div>
+            </div>
+          </div>
+          <div *ngIf="state.todos.length === 0" class="empty-state">
+            No todos in state
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>code</mat-icon>
+            Raw State (JSON)
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <pre class="json-view">{{ formatJson(state$ | async) }}</pre>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>filter_list</mat-icon>
+            Active Filters
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="filter-info" *ngIf="state$ | async as state">
+          <div class="info-item">
+            <strong>Show Completed:</strong> {{ state.filter.showCompleted ? 'Yes' : 'No' }}
+          </div>
+          <div class="info-item">
+            <strong>Show Active:</strong> {{ state.filter.showActive ? 'Yes' : 'No' }}
+          </div>
+          <div class="info-item">
+            <strong>Priority Filter:</strong> {{ state.filter.priority || 'None' }}
+          </div>
+          <div class="info-item">
+            <strong>Search Term:</strong> {{ state.searchTerm || 'None' }}
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

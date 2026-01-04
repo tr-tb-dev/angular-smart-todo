@@ -1,0 +1,41 @@
+<div class="stats-container" *ngIf="stats$ | async as stats">
+  <div class="stat-card total">
+    <div class="stat-icon">
+      <mat-icon>list_alt</mat-icon>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ stats.total }}</div>
+      <div class="stat-label">Total Tasks</div>
+    </div>
+  </div>
+
+  <div class="stat-card active">
+    <div class="stat-icon">
+      <mat-icon>hourglass_empty</mat-icon>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ stats.active }}</div>
+      <div class="stat-label">Active</div>
+    </div>
+  </div>
+
+  <div class="stat-card completed">
+    <div class="stat-icon">
+      <mat-icon>check_circle</mat-icon>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ stats.completed }}</div>
+      <div class="stat-label">Completed</div>
+    </div>
+  </div>
+
+  <div class="stat-card progress">
+    <div class="stat-icon">
+      <mat-icon>trending_up</mat-icon>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ stats.completionRate }}%</div>
+      <div class="stat-label">Progress</div>
+    </div>
+  </div>
+</div>

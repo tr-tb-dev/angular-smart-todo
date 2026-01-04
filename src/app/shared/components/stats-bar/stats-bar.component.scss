@@ -1,0 +1,135 @@
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  min-width: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    flex-shrink: 0;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+  }
+
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &.total {
+    .stat-icon {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .stat-value {
+      color: #667eea;
+    }
+  }
+
+  &.active {
+    .stat-icon {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    .stat-value {
+      color: #f5576c;
+    }
+  }
+
+  &.completed {
+    .stat-icon {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    .stat-value {
+      color: #4facfe;
+    }
+  }
+
+  &.progress {
+    .stat-icon {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+    .stat-value {
+      color: #43e97b;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-card {
+    padding: 16px;
+    gap: 12px;
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .stat-value {
+      font-size: 24px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+    }
+  }
+}

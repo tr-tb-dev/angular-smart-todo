@@ -1,0 +1,79 @@
+# Smart To-Do List (Angular 16)
+
+## Overview
+This project is a **Smart To-Do List** built with **Angular 16.2.x**.  
+The goal of the project is to demonstrate **real-world Angular application architecture**, rather than a simple tutorial-level CRUD example.
+
+The focus is on:
+- event-driven state management
+- undo functionality
+- offline-capable persistence
+- performance-oriented Angular patterns
+- consistent UI built with Angular Material
+
+---
+
+## Tech Stack
+
+- **Angular 16.2.x** – standalone components, Angular CLI
+- **TypeScript**
+- **RxJS** – action streams and state derivation
+- **Angular Material** – accessible, production-ready UI components
+- **IndexedDB** (via Dexie ) – persistent offline storage
+- **Reactive Forms**
+- **ChangeDetectionStrategy.OnPush**
+
+---
+
+## Architecture Summary
+
+The application follows an **event-driven state model**.
+
+User interactions emit **actions** into an RxJS stream.  
+Application state is derived using the `scan` operator, which allows immutable state transitions and enables **undo support** without a global store.
+
+UI-related state (filters, selection, loading flags) is handled via RxJS streams and reflected in Angular Material components, keeping presentation and domain logic clearly separated.
+
+Persistence is implemented using **IndexedDB**, ensuring data survives page reloads and browser restarts while remaining fully asynchronous.
+
+---
+
+## State Management Approach
+
+- All state changes are expressed as explicit user actions
+- RxJS `scan` builds the current state over time
+- Previous states are stored to support undo operations
+- State updates are immutable and deterministic
+
+This approach keeps the architecture simple while still supporting advanced interaction patterns.
+
+---
+
+## Offline & Storage Strategy
+
+- Todo items and lists are stored in **IndexedDB**
+- Storage access is asynchronous and non-blocking
+- The application remains usable after refresh or temporary network loss
+- Only domain data is persisted; UI state remains in memory
+
+---
+
+## Performance Considerations
+
+- `ChangeDetectionStrategy.OnPush`
+- `trackBy` functions for list rendering
+- `async` pipe for subscription handling
+- Efficient change detection with Angular Material components
+
+---
+
+## Why This Project
+
+This project demonstrates:
+- idiomatic Angular 16 patterns
+- practical RxJS usage beyond basic subscriptions
+- offline-first thinking with browser-native storage
+- structured, accessible UI using Angular Material
+- clean separation of concerns without heavy frameworks
+
+The goal is to reflect **enterprise-grade Angular development practices** in a compact, understandable example.

@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+
+  <button mat-icon-button (click)="onUndo()" [disabled]="!(canUndo$ | async)" title="Undo">
+    <mat-icon>undo</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="onRedo()" [disabled]="!(canRedo$ | async)" title="Redo">
+    <mat-icon>redo</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="app-container">
+  <div class="sidebar-left">
+    <app-todo-form></app-todo-form>
+  </div>
+
+  <div class="main-content">
+    <app-todo-list></app-todo-list>
+  </div>
+
+  <div class="sidebar-right">
+    <app-collapsible-section title="Statistics" [defaultOpen]="true">
+      <app-stats-bar></app-stats-bar>
+    </app-collapsible-section>
+
+    <app-collapsible-section title="Filters" [defaultOpen]="true">
+      <app-todo-filter></app-todo-filter>
+    </app-collapsible-section>
+  </div>
+</div>
+
+<app-state-debugger></app-state-debugger>

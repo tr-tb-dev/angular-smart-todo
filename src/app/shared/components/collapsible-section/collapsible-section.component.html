@@ -1,0 +1,12 @@
+<div class="collapsible-section">
+  <div class="section-header" (click)="toggle()">
+    <h3>{{ title }}</h3>
+    <button mat-icon-button>
+      <mat-icon>{{ isOpen ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+  </div>
+
+  <div class="section-content" [class.collapsed]="!isOpen">
+    <ng-content></ng-content>
+  </div>
+</div>

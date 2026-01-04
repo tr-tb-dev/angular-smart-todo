@@ -1,0 +1,62 @@
+<div class="todo-form-container">
+  <h2>Add New Todo</h2>
+
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter todo title" required>
+      <mat-error *ngIf="todoForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+      <mat-error *ngIf="todoForm.get('title')?.hasError('minlength')">
+        Title must be at least 3 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Enter description (optional)"
+        rows="3">
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option *ngFor="let priority of priorities" [value]="priority">
+          {{ priority | titlecase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="tags-section">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tags</mat-label>
+        <input
+          matInput
+          [(ngModel)]="tagInput"
+          [ngModelOptions]="{standalone: true}"
+          (keydown)="onTagInputKeydown($event)"
+          placeholder="Add tags (press Enter)">
+      </mat-form-field>
+
+      <mat-chip-set *ngIf="tags.length > 0">
+        <mat-chip *ngFor="let tag of tags" (removed)="removeTag(tag)">
+          {{ tag }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!todoForm.valid">
+        Add Todo
+      </button>
+    </div>
+  </form>
+</div>

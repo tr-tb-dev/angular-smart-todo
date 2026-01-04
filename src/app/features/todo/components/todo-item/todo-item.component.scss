@@ -1,0 +1,56 @@
+.todo-item {
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &.completed {
+    opacity: 0.7;
+    background-color: #f5f5f5;
+  }
+}
+
+.todo-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.todo-info {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 500;
+
+    &.completed-text {
+      text-decoration: line-through;
+      color: #999;
+    }
+  }
+}
+
+.todo-description {
+  margin: 0 0 12px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.todo-meta {
+  margin-top: 8px;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+mat-chip-set {
+  mat-chip {
+    font-size: 12px;
+  }
+}

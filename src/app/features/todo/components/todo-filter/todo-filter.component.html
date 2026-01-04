@@ -1,0 +1,53 @@
+<div class="filter-bar">
+  <div class="search-section">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Search todos...">
+      <button
+        *ngIf="searchTerm"
+        matSuffix
+        mat-icon-button
+        (click)="onSearchChange('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="filter-chips">
+    <mat-chip-set>
+      <mat-chip
+        [class.active]="showActive"
+        (click)="onShowActiveChange(!showActive)">
+        <mat-icon>hourglass_empty</mat-icon>
+        Active
+      </mat-chip>
+
+      <mat-chip
+        [class.active]="showCompleted"
+        (click)="onShowCompletedChange(!showCompleted)">
+        <mat-icon>check_circle</mat-icon>
+        Completed
+      </mat-chip>
+
+      <mat-chip
+        *ngFor="let priority of priorities.slice(1)"
+        [class.active]="selectedPriority === priority.value"
+        (click)="onPriorityChange(selectedPriority === priority.value ? null : priority.value)">
+        <mat-icon>{{getPriorityIcon(priority.value)}}</mat-icon>
+        {{ priority.label }}
+      </mat-chip>
+
+      <mat-chip
+        *ngIf="searchTerm || selectedPriority !== null || !showActive || !showCompleted"
+        class="clear-chip"
+        (click)="clearFilters()">
+        <mat-icon>clear_all</mat-icon>
+        Clear
+      </mat-chip>
+    </mat-chip-set>
+  </div>
+</div>
