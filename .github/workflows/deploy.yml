@@ -35,6 +35,13 @@ jobs:
       - name: Build
         run: npm run build -- --configuration production --base-href=/angular_smart_todo/
 
+      - name: List build output
+        run: |
+          echo "Build output:"
+          ls -la dist/smart-todo/
+          echo "Checking base href in index.html:"
+          grep "base href" dist/smart-todo/index.html || echo "No base href found"
+
       - name: Create .nojekyll file
         run: touch dist/smart-todo/.nojekyll
 
