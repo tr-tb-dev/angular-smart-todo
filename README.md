@@ -1,12 +1,12 @@
 # Smart To-Do List
 
-[![Build](https://img.shields.io/badge/Build-Deployed-2EA44F)](https://tr-tb-dev.github.io/angular_smart_todo/)
+[![Build](https://img.shields.io/badge/Build-Deployed-2EA44F)](https://tr-tb-dev.github.io/angular-smart-todo/)
 
 An advanced Angular-based to-do list application with offline capabilities, state management, undo/redo functionality, and a built-in state debugger.
 
 ## Live Demo
 
-🚀 [View Live Application](https://tr-tb-dev.github.io/angular_smart_todo/)
+🚀 [View Live Application](https://tr-tb-dev.github.io/angular-smart-todo/)
 
 ## Features
 
@@ -65,3 +65,7 @@ The application is automatically deployed to GitHub Pages on every push to the `
 - **Data Persistence**: IndexedDB via Dexie for offline-first approach
 - **Component Architecture**: Standalone components with OnPush change detection
 - **Reactive Forms**: Template-driven and reactive forms for user input
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6c490eec-160f-4b1a-b66d-138f15589b10" alt="Angular Smart Todo List" width="80%"/> 
+</p>
