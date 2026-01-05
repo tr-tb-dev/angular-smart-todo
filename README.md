@@ -10,15 +10,15 @@ An advanced Angular-based to-do list application with offline capabilities, stat
 
 ## Features
 
-- ✅ Create, edit, and delete todos
-- 🎨 Priority levels (Low, Medium, High)
-- 🏷️ Tag support for organization
-- 🔍 Search and filter capabilities
-- ↩️ Undo/Redo functionality
-- 💾 Offline support with IndexedDB
-- 📊 Real-time statistics
-- 🐛 Built-in state debugger
-- 📱 Responsive design
+- Create, edit, and delete todos
+- Priority levels (Low, Medium, High)
+- Tag support for organization
+- Search and filter capabilities
+- Undo/Redo functionality
+- Offline support with IndexedDB
+- Real-time statistics
+- Built-in state debugger
+- Responsive design
 
 ## Tech Stack
 
